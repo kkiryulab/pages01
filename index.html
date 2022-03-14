@@ -11,47 +11,41 @@
 <body>
     <div id="app">
         <v-app>
-            <v-app-bar app color="blue-grey lighten-4" flat>
-                <v-container class="py-0 fill-height">
-                    <v-avatar class="mr-10" color="grey darken-1" size="48">
-                        <img
-                        src="./IMG_3849.jpg"
-                        >
+            <v-app-bar app color="blue-grey lighten-4" src="./D8A99D2C-3CDF-47C1-8411-2D2DE69E572E 2.JPG"
+                scroll-target="#scrolling-techniques-3" dark prominent>
+                <v-container class="py-8 fill-height">
+                    <v-avatar class="mr-10" color="grey darken-1" size="56">
+                        <img src="./IMG_3849.jpg">
                     </v-avatar>
+                    <v-app-bar-title class="text-h4">
+                        analog-technica
+                    </v-app-bar-title>
 
-                    <v-btn v-for="link in links" :key="link" text>
+
+                    <!-- <v-btn color="white" v-for="link in links" :key="link" text>
                         {{ link }}
-                    </v-btn>
+                    </v-btn> -->
 
-                    <v-spacer></v-spacer>
+                    <!-- <v-spacer></v-spacer> -->
 
-                    <v-responsive max-width="260">
-                        <v-text-field 
-                            dense 
-                            flat
-                            hide-details
-                            rounded
-                            solo-inverted
-                            label="Search for ..."
-                            append-icon="mdi-magnify"
-                            >
-                        </v-text-field>
-                    </v-responsive>
                 </v-container>
             </v-app-bar>
             <v-main class="grey lighten-3">
                 <v-container>
                     <v-row>
                         <v-col cols="2">
+                            <v-text-field class="my-4" dense flat hide-details rounded solo-inverted
+                                label="Search for ..." append-icon="mdi-magnify">
+                            </v-text-field>
                             <v-sheet rounded="lg">
                                 <v-list color="transparent">
                                     <!-- <v-list-item v-for="n in 5" :key="n" link> -->
-                                    <v-list-item v-for="(item,i) in items":key="i" link>
+                                    <v-list-item v-for="(menu,i) in menus" :key="i" link>
                                         <v-list-item-icon>
-                                            <v-icon v-text="item.icon"></v-icon>
+                                            <v-icon v-text="menu.icon"></v-icon>
                                         </v-list-item-icon>
                                         <v-list-item-content>
-                                            <v-list-item-title v-text="item.text">
+                                            <v-list-item-title v-text="menu.text">
                                             </v-list-item-title>
                                         </v-list-item-content>
                                     </v-list-item>
@@ -61,7 +55,28 @@
 
                         <v-col>
                             <v-sheet min-height="70vh" rounded="lg">
-                                <!--  -->
+                                <v-container>
+                                    <v-text class="d-flex justify-center font-italic py-4" >ARTICLES</v-text>
+                                    <v-row>
+                                        <v-col v-for="(item, i) in items" :key="i" class="d-flex" cols="3">
+                                            <v-col>
+                                                <v-card class="mx-auto">
+                                                    <v-list-item>
+                                                        <v-list-item-content>
+                                                            <div class="text-overline mb-4">
+                                                                {{ item.category }}
+                                                            </div>
+                                                            <v-list-item-title class="text-h5 mb-1">
+                                                                {{ item.title }}
+                                                            </v-list-item-title>
+                                                            <v-list-item-subtitle>{{ item.date }}</v-list-item-subtitle>
+                                                        </v-list-item-content>
+                                                    </v-list-item>
+                                                </v-card>
+                                            </v-col>
+                                        </v-col>
+                                    </v-row>
+                                </v-container>
                             </v-sheet>
                         </v-col>
                     </v-row>
@@ -76,17 +91,26 @@
         new Vue({
             el: '#app',
             vuetify: new Vuetify(),
-            data:() => ({
+            data: () => ({
                 links: [
-                'Blogs',
-                'Bio'
+                    'Blogs',
+                    'Bio'
+                ],
+                menus: [
+                    { text: 'Dev', icon: 'mdi-application-variable-outline' },
+                    { text: 'DIYs', icon: 'mdi-hammer-screwdriver' },
+                    { text: 'Photos', icon: 'mdi-camera-iris' },
+                    { text: 'Misc', icon: 'mdi-emoticon-cool-outline' }
                 ],
                 items: [
-                {text:'Dev', icon:'mdi-application-variable-outline'},
-                {text:'DIYs', icon:'mdi-hammer-screwdriver'},
-                {text:'Photos', icon:'mdi-camera-iris'},
-                {text:'Misc', icon:'mdi-emoticon-cool-outline'}
+                    { number: "1", title: 'about engineering', category: 'Dev', date: '2021/02/23' },
+                    { number: "2", title: 'who is', category: 'Misc', date: '2021/02/28' },
+                    { number: "3", title: 'wordle', category: 'Misc', date: '2021/03/15' },
+                    { number: "4", title: 'designing APIs', category: 'Dev', date: '2021/04/30' },
+                    { number: "5", title: 'Machine Learning', category: 'Dev', date: '2021/07/05' },
+                    { number: "6", title: 'Playground', category: 'DIYs', date: '2021/09/15' },
                 ]
+
             })
         })
     </script>
