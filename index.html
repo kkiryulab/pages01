@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -11,54 +10,72 @@
 
 <body>
     <div id="app">
+        <v-app>
+            <v-app-bar app color="blue-grey lighten-4" flat>
+                <v-container class="py-0 fill-height">
+                    <v-avatar class="mr-10" color="grey darken-1" size="48">
+                        <img
+                        src="./IMG_3849.jpg"
+                        >
+                    </v-avatar>
 
-    <!-- ここから -->
+                    <v-btn v-for="link in links" :key="link" text>
+                        {{ link }}
+                    </v-btn>
 
-    <v-app>
+                    <v-spacer></v-spacer>
 
-        <v-system-bar app>
-            Single HTML Template
-        </v-system-bar>
+                    <v-responsive max-width="260">
+                        <v-text-field 
+                            dense 
+                            flat
+                            hide-details
+                            rounded
+                            solo-inverted
+                            label="Search for ..."
+                            append-icon="mdi-magnify"
+                            >
+                        </v-text-field>
+                    </v-responsive>
+                </v-container>
+            </v-app-bar>
+            <v-main class="grey lighten-3">
+                <v-container>
+                    <v-row>
+                        <v-col cols="2">
+                            <v-sheet rounded="lg">
+                                <v-list color="transparent">
+                                    <!-- <v-list-item v-for="n in 5" :key="n" link> -->
+                                    <v-list-item v-for="item in items" link>
+                                        <v-list-item-content>
+                                            <v-list-item-title>
+                                                {{ item }}
+                                            </v-list-item-title>
+                                        </v-list-item-content>
+                                    </v-list-item>
 
-        <v-navigation-drawer app>
-            <v-sheet>
-                Hello!
-            </v-sheet>
+                                    <v-divider class="my-2"></v-divider>
 
-            <v-divider></v-divider>
+                                    <v-list-item link color="grey lighten-4">
+                                        <v-list-item-content>
+                                            <v-list-item-title>
+                                                Refresh
+                                            </v-list-item-title>
+                                        </v-list-item-content>
+                                    </v-list-item>
+                                </v-list>
+                            </v-sheet>
+                        </v-col>
 
-            <v-sheet>
-                Left Bar
-            </v-sheet>
-        </v-navigation-drawer>
-
-        <v-main>
-
-            <v-toolbar></v-toolbar>
-
-            <v-container fluid>
-
-                <h1 class="display-3">GYU-DON</h1>
-
-                <div class="display-1">{{message}}</div>
-
-                <v-chip close v-model="chip1" @click="onChipClick" @input="onClose">
-                <v-avatar>
-                <img src="https://randomuser.me/api/portraits/men/35.jpg" alt="trevor">
-                </v-avatar>
-                GYUDON MAN
-                </v-chip>
-
-            </v-container>
-
-        </v-main>
-
-        <v-footer app>hoge</v-footer>
-
-    </v-app>
-
-    <!-- ここまで！ -->
-
+                        <v-col>
+                            <v-sheet min-height="70vh" rounded="lg">
+                                <!--  -->
+                            </v-sheet>
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </v-main>
+        </v-app>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
@@ -67,20 +84,22 @@
         new Vue({
             el: '#app',
             vuetify: new Vuetify(),
-            data: {
-                message: "this is the best of food.",
-                chip1: true
-            },
-            methods: {
-                onChipClick: function(ev) {
-                    this.message = "YOSHINOYA is better.";
-                },
-                onClose: function(ev) {
-                    this.message = "good night.";
-                }
-            }
-        });
+            data:() => ({
+                links: [
+                'Blog',
+                'Bio',
+                'Links'
+                ],
+                items: [
+                'DIY',
+                'Crafts',
+                'Car',
+                'Music',
+                'Others'
+                ],
+            })
+        })
     </script>
-
 </body>
+
 </html>
